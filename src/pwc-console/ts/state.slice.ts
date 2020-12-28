@@ -1,4 +1,3 @@
-// tslint:disable no-console
 
 import { stateFactory } from '@wfh/plink/wfh/dist/store';
 import { InferActionsType, PayloadAction } from '@wfh/redux-toolkit-observable/dist/redux-toolkit-observable';
@@ -6,10 +5,6 @@ import _ from 'lodash';
 import { Observable, merge } from 'rxjs';
 import {map, distinctUntilChanged, ignoreElements, catchError, scan} from 'rxjs/operators';
 
-/** We have to explicityly export Observable, for exporting getStore() function, otherwise Typescript will report 
- * "This is likely not portable, a type annotation is necessary" 
- * https://github.com/microsoft/TypeScript/issues/30858
- */
 export { Observable };
 
 export interface ConsoleState {
@@ -60,7 +55,6 @@ const initialState: ConsoleState = {
   fluctuating: 0.5,
   temperature: 25,
   _computed: {
-    // physicalStates: interpolateFluctuating(stateThreshold, ),
     direction: '',
     alert: ''
   }
@@ -124,7 +118,6 @@ stateFactory.addEpic<{example: ConsoleState}>((action$, state$) => {
         const ps = getState()._computed.physicalStates;
         if (curr != null && prev != null && ps) {
           if (ps[curr].isFluctuating) {
-            console.log(Math.abs(curr - prev));
             if (Math.abs(curr - prev) > 1) {
               actionDispatcher._change(s => s._computed.alert = curr > prev ?
                 ps[curr - 1].rising! :

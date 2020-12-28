@@ -2,7 +2,6 @@
 import {actionDispatcher, getStore} from './state.slice';
 import {map, filter, distinctUntilChanged} from 'rxjs/operators';
 import readline from 'readline';
-// import {initProcess} from '@wfh/plink/wfh/dist';
 import chalk from 'chalk';
 
 export function start() {

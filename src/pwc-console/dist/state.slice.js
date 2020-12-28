@@ -1,5 +1,4 @@
 "use strict";
-// tslint:disable no-console
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -35,7 +34,6 @@ const initialState = {
     fluctuating: 0.5,
     temperature: 25,
     _computed: {
-        // physicalStates: interpolateFluctuating(stateThreshold, ),
         direction: '',
         alert: ''
     }
@@ -86,7 +84,6 @@ store_1.stateFactory.addEpic((action$, state$) => {
         const ps = getState()._computed.physicalStates;
         if (curr != null && prev != null && ps) {
             if (ps[curr].isFluctuating) {
-                console.log(Math.abs(curr - prev));
                 if (Math.abs(curr - prev) > 1) {
                     exports.actionDispatcher._change(s => s._computed.alert = curr > prev ?
                         ps[curr - 1].rising :

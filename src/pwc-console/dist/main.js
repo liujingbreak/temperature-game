@@ -8,7 +8,6 @@ exports.start = void 0;
 const state_slice_1 = require("./state.slice");
 const operators_1 = require("rxjs/operators");
 const readline_1 = __importDefault(require("readline"));
-// import {initProcess} from '@wfh/plink/wfh/dist';
 const chalk_1 = __importDefault(require("chalk"));
 function start() {
     const rl = readline_1.default.createInterface({

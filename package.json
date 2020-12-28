@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "private": true,
+  "packages": ["src"],
   "scripts": {
     "init": "npm i && plink project add . && plink init workspace",
-    "start": "cd workspace && plink run pwc-console/dist/main.js#start"
+    "start": "cd workspace && plink run pwc-console/dist/main.js#start",
+    "test": "export NODE_OPTIONS=\"-r @wfh/plink/register\" && cd workspace && ./node_modules/.bin/jasmine ../src/pwc-console/dist/spec/consoleSpec.js"
   },
   "dependencies": {
     "@wfh/plink": "./tarballs/wfh-plink-0.9.11-1.tgz",

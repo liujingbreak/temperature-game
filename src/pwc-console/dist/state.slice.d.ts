@@ -1,9 +1,5 @@
 import { InferActionsType, PayloadAction } from '@wfh/redux-toolkit-observable/dist/redux-toolkit-observable';
 import { Observable } from 'rxjs';
-/** We have to explicityly export Observable, for exporting getStore() function, otherwise Typescript will report
- * "This is likely not portable, a type annotation is necessary"
- * https://github.com/microsoft/TypeScript/issues/30858
- */
 export { Observable };
 export interface ConsoleState {
     stateThreshold: StateThreshold[];

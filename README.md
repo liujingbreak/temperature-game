@@ -9,4 +9,5 @@ npm run init
 npm start
 ```
 
-
+## Source code directory
+`src/pwc-console/ts`
