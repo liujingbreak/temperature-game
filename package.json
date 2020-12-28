@@ -9,7 +9,6 @@
     "start": "cd workspace && plink run pwc-console/dist/main.js#start"
   },
   "dependencies": {
-    "init": "plink project ",
     "@wfh/plink": "./tarballs/wfh-plink-0.9.11-0.tgz",
     "typescript": "^4.1.2"
   },
