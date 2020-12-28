@@ -1,0 +1,13 @@
+{
+  "name": "@wfh/pwc-console",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dr": {},
+  "dependencies": {
+    "chalk": "",
+    "rxjs": "~6.6.3"
+  },
+  "author": "LJ",
+  "license": "MIT"
+}

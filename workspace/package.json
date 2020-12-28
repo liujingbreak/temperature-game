@@ -1,0 +1,19 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "packages": [
+    "src"
+  ],
+  "dependencies": {
+    "@wfh/pwc-console": "1.0.0",
+    "@wfh/redux-toolkit-observable": "../tarballs/wfh-redux-toolkit-observable-1.0.5.tgz"
+  },
+  "author": "LJ",
+  "license": "ISC"
+}
