@@ -1,3 +1,5 @@
+// tslint:disable no-console
+
 import { stateFactory } from '@wfh/plink/wfh/dist/store';
 import { InferActionsType, PayloadAction } from '@wfh/redux-toolkit-observable/dist/redux-toolkit-observable';
 import _ from 'lodash';
@@ -106,9 +108,11 @@ stateFactory.addEpic<{example: ConsoleState}>((action$, state$) => {
   return merge(
     // initial temperature lookup table
     getStore().pipe(
-      distinctUntilChanged<ConsoleState>((s1, s2) => s1.fluctuating === s2.fluctuating && s1.stateThreshold === s2.stateThreshold),
+      distinctUntilChanged<ConsoleState>((s1, s2) => s1.fluctuating === s2.fluctuating &&
+        s1.stateThreshold === s2.stateThreshold),
       map(s => {
-        actionDispatcher._change(d => d._computed.physicalStates = interpolateFluctuating(d.stateThreshold, d.fluctuating))
+        actionDispatcher._change(d => d._computed.physicalStates =
+          interpolateFluctuating(d.stateThreshold, d.fluctuating));
       })
     ),
 
@@ -122,7 +126,9 @@ stateFactory.addEpic<{example: ConsoleState}>((action$, state$) => {
           if (ps[curr].isFluctuating) {
             console.log(Math.abs(curr - prev));
             if (Math.abs(curr - prev) > 1) {
-              actionDispatcher._change(s => s._computed.alert = curr > prev ? ps[curr - 1].rising! : ps[curr + 1].descending!);
+              actionDispatcher._change(s => s._computed.alert = curr > prev ?
+                ps[curr - 1].rising! :
+                ps[curr + 1].descending!);
             } else {
               actionDispatcher._change(s => s._computed.alert = '');
             }
@@ -155,7 +161,8 @@ function interpolateFluctuating(states: StateThreshold[], fluct: number) {
     states[0]
   ];
   for (const item of states.slice(1)) {
-    ranges.push({
+    ranges.push(
+      {
         isFluctuating: true,
         baseTemperature: item.baseTemperature - fluct
       },

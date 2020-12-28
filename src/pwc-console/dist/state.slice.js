@@ -1,4 +1,5 @@
 "use strict";
+// tslint:disable no-console
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -75,8 +76,10 @@ exports.actionDispatcher = store_1.stateFactory.bindActionCreators(consoleSlice)
 store_1.stateFactory.addEpic((action$, state$) => {
     return rxjs_1.merge(
     // initial temperature lookup table
-    getStore().pipe(operators_1.distinctUntilChanged((s1, s2) => s1.fluctuating === s2.fluctuating && s1.stateThreshold === s2.stateThreshold), operators_1.map(s => {
-        exports.actionDispatcher._change(d => d._computed.physicalStates = interpolateFluctuating(d.stateThreshold, d.fluctuating));
+    getStore().pipe(operators_1.distinctUntilChanged((s1, s2) => s1.fluctuating === s2.fluctuating &&
+        s1.stateThreshold === s2.stateThreshold), operators_1.map(s => {
+        exports.actionDispatcher._change(d => d._computed.physicalStates =
+            interpolateFluctuating(d.stateThreshold, d.fluctuating));
     })), 
     // watch stateIdx changes, generate alert
     getStore().pipe(operators_1.map(s => s._computed.stateIdx), operators_1.distinctUntilChanged(), operators_1.scan((prev, curr) => {
@@ -85,7 +88,9 @@ store_1.stateFactory.addEpic((action$, state$) => {
             if (ps[curr].isFluctuating) {
                 console.log(Math.abs(curr - prev));
                 if (Math.abs(curr - prev) > 1) {
-                    exports.actionDispatcher._change(s => s._computed.alert = curr > prev ? ps[curr - 1].rising : ps[curr + 1].descending);
+                    exports.actionDispatcher._change(s => s._computed.alert = curr > prev ?
+                        ps[curr - 1].rising :
+                        ps[curr + 1].descending);
                 }
                 else {
                     exports.actionDispatcher._change(s => s._computed.alert = '');

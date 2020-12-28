@@ -1,3 +1,4 @@
+// tslint:disable no-console
 import {actionDispatcher, getStore} from './state.slice';
 import {map, filter, distinctUntilChanged} from 'rxjs/operators';
 import readline from 'readline';
@@ -11,7 +12,8 @@ export function start() {
   });
 
   getStore().pipe(
-    distinctUntilChanged((s1, s2) => s1.temperature === s2.temperature && s1._computed.direction === s2._computed.direction),
+    distinctUntilChanged((s1, s2) => s1.temperature === s2.temperature &&
+      s1._computed.direction === s2._computed.direction),
     map(s => console.log(`Current temperature: ${s.temperature} ${s._computed.direction}`))
   ).subscribe();
 

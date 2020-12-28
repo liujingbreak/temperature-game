@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.start = void 0;
+// tslint:disable no-console
 const state_slice_1 = require("./state.slice");
 const operators_1 = require("rxjs/operators");
 const readline_1 = __importDefault(require("readline"));
@@ -14,7 +15,8 @@ function start() {
         input: process.stdin,
         output: process.stdout
     });
-    state_slice_1.getStore().pipe(operators_1.distinctUntilChanged((s1, s2) => s1.temperature === s2.temperature && s1._computed.direction === s2._computed.direction), operators_1.map(s => console.log(`Current temperature: ${s.temperature} ${s._computed.direction}`))).subscribe();
+    state_slice_1.getStore().pipe(operators_1.distinctUntilChanged((s1, s2) => s1.temperature === s2.temperature &&
+        s1._computed.direction === s2._computed.direction), operators_1.map(s => console.log(`Current temperature: ${s.temperature} ${s._computed.direction}`))).subscribe();
     state_slice_1.getStore().pipe(operators_1.map(s => s._computed.alert), operators_1.distinctUntilChanged(), operators_1.filter(msg => msg != null), operators_1.map(msg => console.log(chalk_1.default.cyan(msg)))).subscribe();
     state_slice_1.getStore().pipe(operators_1.map(s => s.error), operators_1.distinctUntilChanged(), operators_1.filter(msg => msg != null), operators_1.map(msg => console.log(chalk_1.default.red(msg)))).subscribe();
     console.log('Input new temperature:');
