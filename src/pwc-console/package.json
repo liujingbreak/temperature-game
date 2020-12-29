@@ -5,7 +5,6 @@
   "main": "index.js",
   "dr": {},
   "dependencies": {
-    "chalk": "",
     "rxjs": "~6.6.3"
   },
   "author": "LJ",
